@@ -4,7 +4,7 @@ This project demonstrates a professional-grade AWS networking architecture desig
 
 ## 🏗️ Architecture Diagram
 
-![Architecture Diagram](diagrams/architecture.png)
+![Architecture Diagram](diagrams/Architecture.png)
 
 Project Overview
 The goal of this project was to host a web server that is completely invisible to the public internet. 

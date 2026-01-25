@@ -7,6 +7,7 @@ This project demonstrates a professional-grade AWS networking architecture desig
 ![Architecture Diagram](diagrams/Architecture.png)
 
 Project Overview
+
 The goal of this project was to host a web server that is completely invisible to the public internet. 
 By placing the server in a Private Subnet, we eliminate direct attack vectors. 
 

@@ -50,18 +50,27 @@ The ultimate proof of the architecture success is the live web response. By navi
 ![Live Web Page Validation](screenshots/live-web-page.png)
 
 System Definition and General Summary
+
 The AWS Multi-Tier Secure Network Architecture is a professional-grade cloud infrastructure built on the core principles of Defense in Depth and Least Privilege. Unlike traditional flat network designs, this architecture physically and logically segregates application components based on their roles and risk profiles. The system is partitioned into two distinct zones: a Public Layer for edge-facing services and a Private Layer for isolated backend processing.
 
+
 1. Layered Defense and Isolation
+
 The heart of the system—the Apache Web Server—is housed within a Private Subnet with no direct route to or from the internet. This effectively removes the server from the public attack surface, making it immune to direct internet-based scans or brute-force attempts. All incoming legitimate traffic is strictly brokered by a managed Application Load Balancer (ALB) acting as a secure gateway.
 
+
 2. Dynamic Security Group Chaining
+
 Security is enforced through Security Group Chaining rather than static IP filtering. By referencing the Security Group IDs of the ALB and the NAT Instance, the web server maintains a dynamic trust relationship. It only accepts traffic if it originates from these specific, authorized entities, ensuring that even internal lateral movement is restricted.
 
+
 3. Secure Administration and Outbound Control
+
 NAT Instance: Facilitates secure outbound connectivity for the private instances, allowing for critical system patches and updates without exposing the instances to inbound risks.
 
 Bastion Host & SSH Agent Forwarding: Administrative access is achieved through a secure "Jump Server" methodology. By utilizing SSH Agent Forwarding, management tasks are performed without ever storing sensitive private keys on the cloud infrastructure, maintaining credential integrity.
 
+
 Final Conclusion
+
 This project demonstrates a transition from simple cloud hosting to a security-first infrastructure design. By integrating Invisibility, Strict Access Control, and High Availability, the architecture minimizes the potential blast radius of any security incident. It serves as a robust blueprint for hosting sensitive workloads where the protection of data and the reduction of the attack surface are the primary objectives.

@@ -19,32 +19,32 @@ The core of this project security lies in Security Group Chaining. Instead of al
 ## Application Load Balancer Security
 The ALB acts as the front door. It is configured to accept standard HTTP traffic on port 80 from any source. Its primary role is to receive requests and forward them to the healthy targets in the private subnet.
 
-![Load Balancer Configuration](diagrams/load-balancer.png)
-![ALB Security Group](diagrams/alb-sg.png)
+![Load Balancer Configuration](screenshots/load-balancer.png)
+![ALB Security Group](screenshots/alb-sg.png)
 
 ## Web Server Security Isolation
 The Web Server is the most protected asset. Its security group is configured with strict rules. It only accepts traffic if the source is the ALB Security Group ID and it only accepts management traffic if the source is the NAT Instance Security Group ID.
 
-![Web Server Security Group](diagrams/production-web-server-sg.png)
+![Web Server Security Group](screenshots/production-web-server-sg.png)
 
 ## Management Gateway (NAT Instance) Security
 The NAT Instance serves a dual purpose: it acts as a NAT gateway for the private server outbound requests and as a Bastion Host for administrative access. Its security group is restricted to only allow SSH access from the administrator's specific public IP address.
 
-![NAT Instance Security Group](diagrams/nat-instance-sg.png)
+![NAT Instance Security Group](screenshots/nat-instance-sg.png)
 
 ## Connectivity and Deployment Verification
 
 ### Load Balancer Target Health
 A critical component of a multi-tier system is the health check mechanism. The ALB constantly performs heartbeats to the private web server. If the server fails to respond on port 80, the ALB will stop sending traffic to it. The following screenshot confirms that the private instance is correctly registered and passing these health checks.
 
-![ALB Target Health](diagrams/alb-healthy.png)
+![ALB Target Health](screenshots/alb-healthy.png)
 
 ### Administrative Access via SSH Agent Forwarding
 Since the web server is in a private subnet, direct SSH is impossible. I utilized SSH Agent Forwarding, allowing me to connect to the NAT Instance and then jump to the Web Server using my local private key without ever uploading that key to the cloud. This maintains the integrity of the security credentials.
 
-![SSH Agent Forwarding Access](diagrams/secure-ssh-jump-access.png)
+![SSH Agent Forwarding Access](screenshots/secure-ssh-jump-access.png)
 
 ### Final Infrastructure Validation
 The ultimate proof of the architecture success is the live web response. By navigating to the DNS name provided by the ALB, we can see the professional landing page served by the private EC2 instance. This confirms that the entire chain from the internet gateway to the load balancer and finally to the private subnet is functioning as intended.
 
-![Live Web Page Validation](diagrams/live-web-page.png)
+![Live Web Page Validation](screenshots/live-web-page.png)

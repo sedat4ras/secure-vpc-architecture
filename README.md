@@ -11,7 +11,7 @@ The architecture is built within a custom Virtual Private Cloud (VPC) using the 
 ## Infrastructure Status and Resource Management
 The resources were deployed across multiple Availability Zones to ensure high availability. The management of these instances required careful coordination of IP addressing and network routing tables to ensure the private instance could communicate with the NAT instance for internet-bound traffic.
 
-![Infrastructure Instances](diagrams/instances.png)
+![Infrastructure Instances](screenshots/instances.png)
 
 ## Security Group Chaining and Traffic Control
 The core of this project security lies in Security Group Chaining. Instead of allowing traffic based on broad IP ranges, the security groups are linked to each other. This ensures that even if an unauthorized user knows the private IP of the server, they cannot communicate with it unless they are coming through the approved load balancer or the management gateway.

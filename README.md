@@ -1,6 +1,6 @@
 # Secure VPC Architecture — AWS Multi-Tier Network Design
 
-> A production-grade cloud infrastructure built on Defense in Depth and Least Privilege principles, isolating application workloads in private subnets behind managed load balancing and security group chaining.
+> A production-grade cloud infrastructure built on Defense in Depth and Least Privilege principles. Application workloads sit in private subnets behind managed load balancing and security group chaining.
 
 [![AWS](https://img.shields.io/badge/Cloud-AWS-FF9900?style=flat-square&logo=amazonaws&logoColor=white)](https://aws.amazon.com/)
 [![VPC](https://img.shields.io/badge/Network-Custom_VPC-232F3E?style=flat-square)](https://aws.amazon.com/vpc/)
@@ -11,7 +11,7 @@
 
 ## Overview
 
-In a standard single-tier architecture, web servers are exposed directly to the internet — creating a massive attack surface. This project eliminates that risk by placing the application layer in a completely isolated **Private Subnet** with zero public footprint.
+In a standard single-tier architecture, web servers are exposed directly to the internet, which creates a massive attack surface. This project removes that exposure by placing the application layer in a completely isolated **Private Subnet** with zero public footprint.
 
 Traffic flows exclusively through a managed **Application Load Balancer**, while outbound connectivity for system updates is handled through a custom **NAT Instance** that doubles as a bastion host.
 
@@ -59,7 +59,7 @@ Even if an attacker discovers the private server's IP, they **cannot communicate
 
 ### Key Security Properties
 
-- **Invisibility:** Web server has no public IP — removed from the internet attack surface entirely
+- **Invisibility:** Web server has no public IP, so it is removed from the internet attack surface entirely
 - **Strict Access Control:** Security group chaining enforces entity-based (not IP-based) trust
 - **Credential Integrity:** SSH Agent Forwarding enables administration without uploading keys to the cloud
 - **High Availability:** Resources deployed across multiple Availability Zones
@@ -100,7 +100,7 @@ ssh ec2-user@<WEB_SERVER_PRIVATE_IP>
 
 ## Key Takeaways
 
-This project demonstrates the transition from simple cloud hosting to **security-first infrastructure design**. By integrating invisibility, strict access control, and high availability, the architecture minimizes the blast radius of any potential security incident — serving as a blueprint for hosting sensitive workloads where data protection and attack surface reduction are the primary objectives.
+This project moves from simple cloud hosting to **security-first infrastructure design**. Invisibility, strict access control, and high availability together minimize the blast radius of a security incident. The design can serve as a blueprint for hosting sensitive workloads where data protection and attack surface reduction are the primary objectives.
 
 ## Contact
 
